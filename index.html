@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Courage Managérial — Réconcilier bienveillance et exigence</title>
+<meta name="description" content="Formation présentielle de 4 heures destinée aux managers intermédiaires : réconcilier bienveillance et exigence par le courage managérial.">
+<style>
+  :root{
+    --vert: #94c11f;
+    --vert-fonce: #6f9317;
+    --marron: #473c32;
+    --orange: #ee7601;
+    --creme: #faf8f3;
+    --creme-carte: #f2ede2;
+    --blanc: #ffffff;
+    --ombre: 0 6px 20px rgba(71,60,50,0.10);
+    --radius: 14px;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    font-family: Calibri, "Trebuchet MS", "Segoe UI", sans-serif;
+    background: var(--creme);
+    color: var(--marron);
+    line-height: 1.6;
+  }
+
+  a{ color: var(--vert-fonce); }
+  a:focus-visible, button:focus-visible, summary:focus-visible{
+    outline: 3px solid var(--orange);
+    outline-offset: 3px;
+  }
+
+  .container{
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- HEADER ---------- */
+  header.hero{
+    background: linear-gradient(135deg, var(--marron) 0%, #5a4c40 100%);
+    color: var(--creme);
+    padding: 56px 0 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  header.hero::after{
+    content:"";
+    position:absolute;
+    right:-60px; top:-60px;
+    width:260px; height:260px;
+    border-radius:50%;
+    background: radial-gradient(circle, rgba(148,193,31,0.35) 0%, rgba(148,193,31,0) 70%);
+  }
+  .hero-top{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom: 36px;
+  }
+  .hero-top img{
+    height: 56px;
+    width:auto;
+    background: var(--blanc);
+    padding:8px;
+    border-radius: 10px;
+  }
+  .hero-top span.brand{
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--vert);
+    font-weight: bold;
+  }
+  h1{
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    margin: 0 0 12px;
+    line-height: 1.15;
+  }
+  h1 .accent{ color: var(--vert); }
+  .accroche{
+    font-size: 1.15rem;
+    max-width: 620px;
+    color: #e8e3d8;
+    margin: 0 0 28px;
+  }
+  .hero-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 14px;
+  }
+  .badge{
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(148,193,31,0.5);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .badge strong{ color: var(--vert); }
+
+  /* ---------- SECTIONS ---------- */
+  main section{
+    padding: 56px 0;
+    border-bottom: 1px solid #e6e0d2;
+  }
+  main section:last-of-type{ border-bottom:none; }
+
+  .eyebrow{
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.82rem;
+    color: var(--orange);
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  h2{
+    font-size: 1.6rem;
+    margin: 0 0 6px;
+    color: var(--marron);
+  }
+  .section-intro{
+    max-width: 640px;
+    color: #6b5f52;
+    margin-bottom: 28px;
+  }
+
+  /* ---------- LE FIL / TENSION VISUELLE (signature) ---------- */
+  .fil{
+    position: relative;
+    padding-left: 28px;
+  }
+  .fil::before{
+    content:"";
+    position:absolute;
+    left: 8px; top: 6px; bottom: 6px;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--vert), var(--orange));
+    border-radius: 3px;
+  }
+
+  /* ---------- ACCORDION ---------- */
+  .module{
+    background: var(--blanc);
+    border: 1px solid #e9e3d6;
+    border-radius: var(--radius);
+    margin-bottom: 14px;
+    box-shadow: var(--ombre);
+    overflow:hidden;
+  }
+  .module.pause{
+    background: var(--creme-carte);
+    box-shadow:none;
+  }
+  .module summary{
+    cursor:pointer;
+    list-style:none;
+    padding: 18px 22px;
+    display:flex;
+    align-items:center;
+    gap: 16px;
+    font-weight: bold;
+    color: var(--marron);
+  }
+  .module summary::-webkit-details-marker{ display:none; }
+  .module summary .heure{
+    flex-shrink:0;
+    background: var(--vert);
+    color: var(--blanc);
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    white-space:nowrap;
+  }
+  .module.pause summary .heure{ background: var(--marron); }
+  .module summary .titre-module{ flex:1; }
+  .module summary .chevron{
+    transition: transform 0.2s ease;
+    color: var(--orange);
+    font-size: 1.2rem;
+  }
+  .module[open] summary .chevron{ transform: rotate(180deg); }
+  .module .contenu{
+    padding: 0 22px 20px 22px;
+    color: #5c5044;
+  }
+  .module .contenu p{ margin: 6px 0; }
+  .module .contenu .label{ font-weight:bold; color: var(--marron); }
+  .module .contenu .methode{
+    display:inline-block;
+    margin-top:8px;
+    background: var(--creme-carte);
+    border-left: 3px solid var(--orange);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.92rem;
+  }
+
+  /* ---------- VIDEO ---------- */
+  .video-wrap{
+    position:relative;
+    border-radius: var(--radius);
+    overflow:hidden;
+    box-shadow: var(--ombre);
+    background:#000;
+    aspect-ratio: 16/9;
+  }
+  .video-wrap iframe{
+    width:100%; height:100%; border:0;
+    position:absolute; inset:0;
+  }
+
+  /* ---------- CARTE ---------- */
+  .carte-wrap{
+    border-radius: var(--radius);
+    overflow:hidden;
+    box-shadow: var(--ombre);
+  }
+  .carte-wrap iframe{
+    width:100%;
+    height:340px;
+    border:0;
+    display:block;
+  }
+  .adresse-card{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    margin-top:16px;
+    background: var(--blanc);
+    border: 1px solid #e9e3d6;
+    border-radius: var(--radius);
+    padding: 16px 20px;
+  }
+  .adresse-card .pin{
+    color: var(--orange);
+    font-size: 1.3rem;
+  }
+
+  /* ---------- TELECHARGEMENTS ---------- */
+  .downloads{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 16px;
+  }
+  .btn-dl{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background: var(--marron);
+    color: var(--creme);
+    text-decoration:none;
+    padding: 14px 22px;
+    border-radius: 999px;
+    font-weight:bold;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+  .btn-dl:hover{ background: var(--vert-fonce); transform: translateY(-2px); }
+  .btn-dl .icon{ font-size:1.1rem; }
+  .btn-dl.secondaire{ background: var(--orange); }
+  .btn-dl.secondaire:hover{ background: #c96201; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background: var(--marron);
+    color: #ded7c9;
+    padding: 44px 0 30px;
+  }
+  footer h3{
+    color: var(--vert);
+    font-size: 1.1rem;
+    margin: 0 0 12px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  footer a{ color: #f1ede3; }
+  footer p{ margin: 4px 0; }
+  .footer-bottom{
+    margin-top: 34px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    font-size: 0.85rem;
+    color: #b4a998;
+    text-align:center;
+  }
+
+  @media (max-width: 640px){
+    .footer-grid{ grid-template-columns: 1fr; }
+    .hero-top img{ height:44px; }
+    .module summary{ flex-wrap:wrap; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .btn-dl, .module summary .chevron{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <img src="logo.png" alt="Logo Valeurs &amp; Talents">
+      <span class="brand">Valeurs &amp; Talents — Formation intra-entreprise</span>
+    </div>
+    <h1>Le Courage <span class="accent">Managérial</span></h1>
+    <p class="accroche">Réconcilier bienveillance et exigence : une formation de 4 heures pour oser dire, oser cadrer, sans renier ce qui fait la force de votre posture managériale.</p>
+    <div class="hero-meta">
+      <span class="badge">📅 <strong>10 juillet 2026</strong></span>
+      <span class="badge">⏱️ <strong>4h</strong> — 8h30 à 12h30</span>
+      <span class="badge">📍 <strong>Carquefou (44)</strong></span>
+      <span class="badge">👥 Managers intermédiaires</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- PROGRAMME -->
+  <section id="programme">
+    <div class="container">
+      <p class="eyebrow">Le déroulé</p>
+      <h2>Un programme qui alterne théorie et mise en pratique</h2>
+      <p class="section-intro">Chaque séquence a été pensée pour vous permettre de passer de la compréhension à l'action. Cliquez sur un module pour en découvrir le détail.</p>
+
+      <div class="fil">
+        <details class="module">
+          <summary><span class="heure">08h30–08h50</span><span class="titre-module">Introduction</span><span class="chevron">⌄</span></summary>
+          <div class="contenu">
+            <p><span class="label">Objectif :</span> créer un climat de confiance, recueillir les attentes, présenter les objectifs.</p>
+            <p>Présentation croisée entre participants et recueil des attentes.</p>
+            <span class="methode">Méthode : icebreaker dynamique</span>
+          </div>
+        </details>
+
+        <details class="module" open>
+          <summary><span class="heure">08h50–09h30</span><span class="titre-module">Les essentiels</span><span class="chevron">⌄</span></summary>
+          <div class="contenu">
+            <p><span class="label">Objectif :</span> comprendre les concepts clés — autorité vs autoritarisme, cadre managérial, légitimité.</p>
+            <p>Apports théoriques : couleurs du manager, pyramide de Maslow, fiche de poste.</p>
+            <span class="methode">Méthode : exposé structuré</span>
+          </div>
+        </details>
+
+        <details class="module">
+          <summary><span class="heure">09h30–10h10</span><span class="titre-module">Classe inversée : analyse de situations</span><span class="chevron">⌄</span></summary>
+          <div class="contenu">
+            <p><span class="label">Objectif :</span> analyser des situations concrètes et proposer des alternatives courageuses et structurantes.</p>
+            <p>Travail en sous-groupes sur des cas pratiques.</p>
+            <span class="methode">Méthode : pré-lecture de fiches + travail collaboratif</span>
+          </div>
+        </details>
+
+        <details class="module pause">
+          <summary><span class="heure">10h10–10h30</span><span class="titre-module">Pause</span></summary>
+        </details>
+
+        <details class="module">
+          <summary><span class="heure">10h30–11h15</span><span class="titre-module">Restitution des classes inversées</span><span class="chevron">⌄</span></summary>
+          <div class="contenu">
+            <p><span class="label">Objectif :</span> partager les analyses et enrichir les pistes d'action grâce aux apports du formateur.</p>
+            <p>Présentation des travaux de sous-groupes suivie d'apports complémentaires.</p>
+            <span class="methode">Méthode : restitution plénière + fiches outils</span>
+          </div>
+        </details>
+
+        <details class="module">
+          <summary><span class="heure">11h15–12h10</span><span class="titre-module">Focus sur la posture d'autorité</span><span class="chevron">⌄</span></summary>
+          <div class="contenu">
+            <p><span class="label">Objectif :</span> adopter une posture d'autorité juste et bienveillante en mobilisant sa voix, son regard et sa posture.</p>
+            <p>Travail sur la posture d'autorité en plénière.</p>
+            <span class="methode">Méthode : mises en situation jouées</span>
+          </div>
+        </details>
+
+        <details class="module">
+          <summary><span class="heure">12h10–12h20</span><span class="titre-module">Conclusion &amp; mise en action</span><span class="chevron">⌄</span></summary>
+          <div class="contenu">
+            <p><span class="label">Objectif :</span> évaluer la formation, extraire un apprentissage clé, définir un engagement personnel.</p>
+            <p>Déclusion et ancrage des apprentissages.</p>
+            <span class="methode">Méthode : post-it + tour de table + plan d'action</span>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOT DU FORMATEUR -->
+  <section id="mot-du-formateur">
+    <div class="container">
+      <p class="eyebrow">Avant de commencer</p>
+      <h2>Le mot du formateur</h2>
+      <p class="section-intro">Quelques minutes pour vous présenter l'esprit de cette formation et ce que vous allez y vivre.</p>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/IIF2IiSVqKs" title="Le mot du formateur — Le Courage Managérial" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIEU -->
+  <section id="lieu">
+    <div class="container">
+      <p class="eyebrow">Informations pratiques</p>
+      <h2>Où se déroule la formation ?</h2>
+      <div class="carte-wrap">
+        <iframe
+          src="https://www.google.com/maps?q=3ter+avenue+des+villages,+44470+Carquefou&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Localisation du lieu de formation"></iframe>
+      </div>
+      <div class="adresse-card">
+        <span class="pin">📍</span>
+        <div>
+          <p style="font-weight:bold; margin:0;">3ter avenue des Villages, 44470 Carquefou</p>
+          <p style="margin:4px 0 0; color:#6b5f52;">Présentiel — 10 juillet 2026, de 8h30 à 12h30</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TELECHARGEMENTS -->
+  <section id="documents">
+    <div class="container">
+      <p class="eyebrow">Vos supports</p>
+      <h2>Documents à télécharger</h2>
+      <p class="section-intro">Retrouvez le programme complet et votre livret stagiaire pour préparer et suivre la formation.</p>
+      <div class="downloads">
+        <a class="btn-dl" href="programme.pdf" download><span class="icon">⬇</span> Télécharger le programme (PDF)</a>
+        <a class="btn-dl secondaire" href="livret-stagiaire.pdf" download><span class="icon">⬇</span> Télécharger le livret stagiaire (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Contact formateur</h3>
+        <p>Mickael Loeuille</p>
+        <p>✉️ <a href="mailto:mickael.loeuille@gmail.com">mickael.loeuille@gmail.com</a></p>
+        <p>📞 <a href="tel:+33681255388">06 81 25 53 88</a></p>
+      </div>
+      <div>
+        <h3>Accessibilité &amp; inclusion</h3>
+        <p>Valeurs &amp; Talents s'engage à accueillir les personnes en situation de handicap et à étudier les adaptations possibles.</p>
+        <p><a href="https://valeurs-et-talents.fr/a-propos-de-nous/#handicap" target="_blank" rel="noopener">Consulter notre politique d'inclusion et handicap →</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Valeurs &amp; Talents — Formation « Le Courage Managérial »
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
